@@ -79,28 +79,23 @@ else
     echo " done"
 fi
 
-echo "Setting goroot and gopath"
 GOROOT=$cache/$ver/go export GOROOT
 GOPATH=$build/.heroku/g export GOPATH
 PATH=$GOROOT/bin:$PATH
-
-echo "goroot and gopath set"
 
 if (test -d $build/Godeps)
 then
     echo "Godeps Exists"
 fi
-hg_command=$(which hg)
 if (which hg >/dev/null)
 then
     echo "hg exists:"
-    echo $hg_command
+    which hg
 fi
-bzr_command=$(which bzr)
 if (which bzr >/dev/null)
 then
     echo "bzr exists:"
-    echo $bzr_command
+    which bzr
 fi
 
 if ! (test -d $build/Godeps || (which hg >/dev/null && which bzr >/dev/null))
@@ -138,9 +133,6 @@ then
 else
     echo "-----> Running: go get -tags heroku ./..."
     echo "Checking hg and bzr again..."
-    ls -l $hg_command
-    ls -l $bzr_command
-    whoami
     go get -tags heroku ./...
 fi
 
