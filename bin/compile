@@ -83,6 +83,20 @@ GOROOT=$cache/$ver/go export GOROOT
 GOPATH=$build/.heroku/g export GOPATH
 PATH=$GOROOT/bin:$PATH
 
+if (test -d $build/Godeps)
+then
+    echo "Godeps Exists"
+fi
+if (which hg >/dev/null)
+then
+    echo "hg exists:"
+    which hg
+fi
+if (which bzr >/dev/null)
+then
+    echo "bzr exists:"
+    which bzr
+fi
 
 if ! (test -d $build/Godeps || (which hg >/dev/null && which bzr >/dev/null))
 then
