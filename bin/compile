@@ -87,15 +87,18 @@ if (test -d $build/Godeps)
 then
     echo "Godeps Exists"
 fi
+
 if (which hg >/dev/null)
 then
     echo "hg exists:"
     which hg
+    ls -l $(which hg)
 fi
 if (which bzr >/dev/null)
 then
     echo "bzr exists:"
     which bzr
+    ls -l $(which bzr)
 fi
 
 if ! (test -d $build/Godeps || (which hg >/dev/null && which bzr >/dev/null))
