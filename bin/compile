@@ -79,9 +79,12 @@ else
     echo " done"
 fi
 
+echo "Setting goroot and gopath"
 GOROOT=$cache/$ver/go export GOROOT
 GOPATH=$build/.heroku/g export GOPATH
 PATH=$GOROOT/bin:$PATH
+
+echo "goroot and gopath set"
 
 if (test -d $build/Godeps)
 then
