@@ -87,18 +87,17 @@ if (test -d $build/Godeps)
 then
     echo "Godeps Exists"
 fi
-
+hg_command=$(which hg)
 if (which hg >/dev/null)
 then
     echo "hg exists:"
-    which hg
-    ls -l $(which hg)
+    echo $hg_command
 fi
+bzr_command=$(which bzr)
 if (which bzr >/dev/null)
 then
     echo "bzr exists:"
-    which bzr
-    ls -l $(which bzr)
+    echo $bzr_command
 fi
 
 if ! (test -d $build/Godeps || (which hg >/dev/null && which bzr >/dev/null))
@@ -135,6 +134,10 @@ then
     godep go install -tags heroku ./...
 else
     echo "-----> Running: go get -tags heroku ./..."
+    echo "Checking hg and bzr again..."
+    ls -l $hg_command
+    ls -l $bzr_command
+    whoami
     go get -tags heroku ./...
 fi
 
